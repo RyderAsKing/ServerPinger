@@ -30,26 +30,29 @@ class CheckStatus extends Command
     {
         $servers = Server::all();
         foreach ($servers as $server) {
-            $wait = 1; // wait Timeout In Seconds
+            // check if difference between last check and now is more then 1 minute
+            if ($server->last_check->diffInMinutes(now()) > 1) {
+                $wait = 1; // wait Timeout In Seconds
 
-            $fp = @fsockopen(
-                $server->ip,
-                $server->port,
-                $errCode,
-                $errStr,
-                $wait
-            );
-            echo "Ping $server->id:$server->port ==> ";
-            if ($fp) {
-                echo 'SUCCESS';
-                $server->status = 'online';
-                fclose($fp);
-            } else {
-                echo "ERROR: $errCode - $errStr";
-                $server->status = 'offline';
+                $fp = @fsockopen(
+                    $server->ip,
+                    $server->port,
+                    $errCode,
+                    $errStr,
+                    $wait
+                );
+                echo "Ping $server->id:$server->port ==> ";
+                if ($fp) {
+                    echo 'SUCCESS';
+                    $server->status = 'online';
+                    fclose($fp);
+                } else {
+                    echo "ERROR: $errCode - $errStr";
+                    $server->status = 'offline';
+                }
+                $server->last_check = now();
+                $server->save();
             }
-            $server->last_check = now();
-            $server->save();
         }
         return 0;
     }
