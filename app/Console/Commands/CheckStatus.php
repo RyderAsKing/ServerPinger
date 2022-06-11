@@ -48,6 +48,7 @@ class CheckStatus extends Command
                 echo "ERROR: $errCode - $errStr";
                 $server->status = 'offline';
             }
+            $server->last_check = now();
             $server->save();
         }
         return 0;

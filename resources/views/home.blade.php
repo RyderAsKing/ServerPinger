@@ -30,7 +30,7 @@
                         </tr> @else @foreach ($servers as $server) <tr>
                             <th scope="row">{{$server->id}}</th>
                             <td>{{$server->ip}}:{{$server->port}} <strong>({{$server->name}})</strong></td>
-                            <td>{{$server->last_check}}</td>
+                            <td>{{$server->last_check->diffForHumans()}}</td>
                             <td>@if($server->status == 'online') <i class="fas fa-circle text-success"></i> @else <i
                                     class="fas fa-circle text-danger"></i> @endif</td>
                             <td><button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><button
