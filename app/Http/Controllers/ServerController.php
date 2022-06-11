@@ -23,6 +23,20 @@ class ServerController extends Controller
     public function add()
     {
         // handle adding server
+        return view('add');
+    }
+
+    public function store(Request $request)
+    {
+        // handle storing server
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'ip' => 'required|ipv4|unique:servers',
+            'port' => 'required|numeric|unique:servers',
+        ]);
+
+        Server::create($request->only(['name', 'ip', 'port']));
+        return redirect()->route('home');
     }
 
     public function edit()

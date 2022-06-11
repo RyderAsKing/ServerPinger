@@ -20,5 +20,13 @@ Route::get('/', [ServerController::class, 'unlogged'])->name('welcome');
 Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/home', [ServerController::class, 'index'])->name('home');
+
+    Route::get('/add', [ServerController::class, 'add'])->name('add');
+    Route::post('/add', [ServerController::class, 'store']);
+
+    Route::get('/edit/{id}', [ServerController::class, 'index'])->name('edit');
+    Route::delete('/delete/{id}', [ServerController::class, 'index'])->name(
+        'delete'
+    );
     // Route::get('/servers', [ServerController::class, 'index'])->name('servers');
 });

@@ -7,7 +7,7 @@
             <h3>Dashboard</h3>
         </div>
         <div class="col-md-2 col-sm-6">
-            <a class="btn btn-primary w-100">Add new</a>
+            <a href={{route('add')}} class="btn btn-primary w-100">Add new</a>
         </div>
     </div>
     <div class="row">
