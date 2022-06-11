@@ -10,13 +10,13 @@ class ServerController extends Controller
     //
     public function index()
     {
-        $servers = Server::all();
+        $servers = Server::paginate(10);
         return view('home', ['servers' => $servers]);
     }
 
     public function unlogged()
     {
-        $servers = Server::all();
+        $servers = Server::paginate(10);
         return view('welcome', ['servers' => $servers]);
     }
 
