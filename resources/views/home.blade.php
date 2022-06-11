@@ -29,7 +29,7 @@
                         <td>192.168.0.1</td>
                         <td>{{now()}}</td>
                         <td><i class="fas fa-circle text-success"></i></td>
-                        <td><button class="btn-sm btn-warning" style="margin-right: 5px;">edit</button><button
+                        <td><button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><button
                                 class="btn-sm btn-danger">X</button>
                         </td>
                     </tr>
