@@ -43,7 +43,8 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="d-flex justify-content-center">
+            {{$servers->links()}}
+        </div>
     </div>
-</div>
-@endsection
+    @endsection
