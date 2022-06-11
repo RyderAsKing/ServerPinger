@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ServerController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ServerController::class, 'unlogged'])->name('welcome');
 
 Auth::routes();
-
-Route::get('/home', [ServerController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [ServerController::class, 'index'])->name('home');
+    // Route::get('/servers', [ServerController::class, 'index'])->name('servers');
+});

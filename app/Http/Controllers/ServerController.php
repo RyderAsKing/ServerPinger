@@ -14,6 +14,12 @@ class ServerController extends Controller
         return view('home', ['servers' => $servers]);
     }
 
+    public function unlogged()
+    {
+        $servers = Server::paginate(10);
+        return view('welcome', ['servers' => $servers]);
+    }
+
     public function add()
     {
         // handle adding server
