@@ -18,7 +18,10 @@ return new class extends Migration {
             $table->string('ip');
             $table->string('port');
             $table->string('status')->default('offline');
-            $table->timestamp('last_check')->default(now());
+            $table
+                ->timestamp('last_check')
+                ->default(null)
+                ->nullable();
             $table->timestamps();
         });
     }

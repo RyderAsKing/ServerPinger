@@ -31,7 +31,10 @@ class CheckStatus extends Command
         $servers = Server::all();
         foreach ($servers as $server) {
             // check if difference between last check and now is more then 1 minute
-            if ($server->last_check->diffInMinutes(now()) > 1) {
+            if (
+                $server->last_check->diffInMinutes(now()) > 1 ||
+                $server->last_check == null
+            ) {
                 $wait = 1; // wait Timeout In Seconds
 
                 $fp = @fsockopen(
