@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->string('name')->nullable();
             $table->string('ip');
             $table->string('port');
-            $table->string('status');
-            $table->timestamp('last_check');
+            $table->string('status')->default('offline');
+            $table->timestamp('last_check')->default(now());
             $table->timestamps();
         });
     }
