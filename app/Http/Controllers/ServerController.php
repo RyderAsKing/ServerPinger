@@ -40,9 +40,30 @@ class ServerController extends Controller
         return redirect()->route('home');
     }
 
-    public function edit()
+    public function edit($id)
     {
         //handle editing server
+        $server = Server::findOrFail($id);
+        return view('edit', ['server' => $server]);
+    }
+
+    public function update($id, Request $request)
+    {
+        // handle updating server
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'ip' => 'required|ipv4|unique:servers,ip,' . $id,
+            'port' => 'required|numeric',
+        ]);
+
+        $server = Server::findOrFail($id);
+
+        $server->name = $request->name;
+        $server->ip = $request->ip;
+        $server->port = $request->port;
+        $server->save();
+
+        return redirect()->back();
     }
 
     public function delete($id)

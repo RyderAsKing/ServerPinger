@@ -24,7 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/add', [ServerController::class, 'add'])->name('add');
     Route::post('/add', [ServerController::class, 'store']);
 
-    Route::get('/edit/{id}', [ServerController::class, 'index'])->name('edit');
+    Route::get('/edit/{id}', [ServerController::class, 'edit'])->name('edit');
+    Route::put('/edit/{id}', [ServerController::class, 'update']);
+
     Route::get('/delete/{id}', [ServerController::class, 'delete'])->name(
         'delete'
     );
