@@ -63,7 +63,7 @@ class ServerController extends Controller
         $server->port = $request->port;
         $server->save();
 
-        return redirect()->back();
+        return redirect()->route('home');
     }
 
     public function delete($id)
