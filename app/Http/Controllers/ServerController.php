@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Server;
 use Illuminate\Http\Request;
+use Whoops\Run;
 
 class ServerController extends Controller
 {
@@ -44,8 +45,10 @@ class ServerController extends Controller
         //handle editing server
     }
 
-    public function delete()
+    public function delete($id)
     {
         // handle deleting server
+        Server::destroy($id);
+        return redirect()->back();
     }
 }

@@ -33,8 +33,9 @@
                             <td>{{$server->last_check->diffForHumans()}}</td>
                             <td>@if($server->status == 'online') <i class="fas fa-circle text-success"></i> @else <i
                                     class="fas fa-circle text-danger"></i> @endif</td>
-                            <td><button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><button
-                                    class="btn-sm btn-danger">X</button>
+                            <td><button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><a
+                                    href={{route('delete', $server->id)}}><button
+                                        class="btn-sm btn-danger">X</button></a>
                             </td>
                         </tr>
                         @endforeach

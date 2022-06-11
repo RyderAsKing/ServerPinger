@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/add', [ServerController::class, 'store']);
 
     Route::get('/edit/{id}', [ServerController::class, 'index'])->name('edit');
-    Route::delete('/delete/{id}', [ServerController::class, 'index'])->name(
+    Route::get('/delete/{id}', [ServerController::class, 'delete'])->name(
         'delete'
     );
     // Route::get('/servers', [ServerController::class, 'index'])->name('servers');
