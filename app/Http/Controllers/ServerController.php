@@ -11,7 +11,7 @@ class ServerController extends Controller
     public function index()
     {
         $servers = Server::all();
-        return view('server.index', ['servers' => $servers]);
+        return view('home', ['servers' => $servers]);
     }
 
     public function add()

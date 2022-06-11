@@ -24,35 +24,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>192.168.0.1:21 <strong>(rig-1)</strong></td>
-                        <td>{{now()}}</td>
-                        <td><i class="fas fa-circle text-success"></i></td>
-                        <td><button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><button
-                                class="btn-sm btn-danger">X</button>
-                        </td>
-                    </tr>
-                    {{-- clone the above row 10 times with random status (success or danger) --}}
-                    @for ($i = 2; $i <= 10; $i++) <tr>
-                        <th scope="row">{{$i}}</th>
-                        <td>
-                            {{Str::random(10)}}
-                        </td>
-                        <td>{{now()}}</td>
-                        <td>
-                            @if (rand(0, 1) == 0)
-                            <i class="fas fa-circle text-success"></i>
-                            @else
-                            <i class="fas fa-circle text-danger"></i>
-                            @endif
-                        </td>
-                        <td>
-                            <button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><button
-                                class="btn-sm btn-danger">X</button>
-                        </td>
+                    {{-- use the data returned as servers to create table rows and the data --}}
+                    @if($servers->count() < 1) <tr>
+                        <td colspan="5">No servers added</td>
+                        </tr> @else @foreach ($servers as $server) <tr>
+                            <th scope="row">{{$server->id}}</th>
+                            <td>{{$server->ip}}:{{$server->port}} <strong>({{$server->name}})</strong></td>
+                            <td>{{$server->last_check}}</td>
+                            <td>@if($server->status == 'online') <i class="fas fa-circle text-success"></i> @else <i
+                                    class="fas fa-circle text-danger"></i> @endif</td>
+                            <td><button class="btn-sm btn-warning" style="margin-right: 1px;">edit</button><button
+                                    class="btn-sm btn-danger">X</button>
+                            </td>
                         </tr>
-                        @endfor
+                        @endforeach
+                        @endif
+
                 </tbody>
             </table>
         </div>
