@@ -32,7 +32,7 @@ class ServerController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'ip' => 'required|ipv4|unique:servers',
-            'port' => 'required|numeric|unique:servers',
+            'port' => 'required|numeric',
         ]);
 
         Server::create($request->only(['name', 'ip', 'port']));
